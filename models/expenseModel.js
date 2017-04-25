@@ -30,6 +30,20 @@ module.exports.addExpense = (newExpense, callback) => {
     Expense.create(newExpense, callback);
 };
 
-module.exports.getAllExpenses = (callback) => {
-    Expense.find({}, callback);
+module.exports.getAllExpenses = (username, callback) => {
+    Expense.find({username: username}, callback);
 };
+
+module.exports.deleteExpenses = (id, callback) => {
+    Expense.remove({_id: id}, callback);
+};
+
+module.exports.editExpense = (id, newExpense, options, callback) => {
+	var query = { _id : id};
+	var update = {
+        username: newExpense.username,
+		expenseName: newExpense.expenseName,
+        amount: newExpense.amount,
+	}
+    Expense.findOneAndUpdate(query, update, options, callback);
+}

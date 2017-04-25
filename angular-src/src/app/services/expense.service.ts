@@ -22,9 +22,21 @@ export class ExpenseService {
   }
 
 
-  getAllExpenses(){
-    return this.http.get(this.port + '/expenses/')
+  getAllExpenses(username){
+    return this.http.get(this.port + '/expenses/' + username)
             .map(res => res.json());
   }
 
+  deleteExpenseService(id) {
+    return this.http.delete(this.port + '/expenses/' + id)
+            .map(res => res.json());
+  }
+
+  editExpenseService(expense) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    console.log("From edit function:"+expense);
+    return this.http.put(this.port + '/expenses/' + expense._id, expense, {headers})
+            .map(res => res.json());
+  }
 }

@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
 import { ExpenseService } from './services/expense.service';
+import {PopupModule} from 'ng2-opd-popup';
 
 const appRoutes = [
   {
@@ -59,6 +60,7 @@ const appRoutes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
+    PopupModule.forRoot(),
     LocalStorageModule.withConfig({
             prefix: 'my-app',
             storageType: 'localStorage'
