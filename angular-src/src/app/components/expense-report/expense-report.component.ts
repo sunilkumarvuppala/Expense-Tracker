@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExpenseService } from '../../services/expense.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import {Popup} from 'ng2-opd-popup';
+import { Popup } from 'ng2-opd-popup';
 
 @Component({
   selector: 'app-expense-report',

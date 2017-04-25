@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { PopupModule } from 'ng2-opd-popup';
+import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,12 +20,12 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
 import { ExpenseService } from './services/expense.service';
-import {PopupModule} from 'ng2-opd-popup';
 
 const appRoutes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -35,11 +37,13 @@ const appRoutes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
     {
     path: 'report',
-    component: ExpenseReportComponent
+    component: ExpenseReportComponent,
+    canActivate: [AuthGuard]
   }
 ]
 
@@ -66,7 +70,7 @@ const appRoutes = [
             storageType: 'localStorage'
         })
   ],
-  providers: [AuthService, ValidateService, ExpenseService],
+  providers: [AuthService, ValidateService, ExpenseService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

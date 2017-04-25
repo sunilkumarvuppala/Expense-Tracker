@@ -18,7 +18,7 @@ export class AuthService {
   registerUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post( this.port + '/users/register', user, {headers})
+    return this.http.post('/users/register', user, {headers})
       .map(res => res.json());
   }
 
@@ -26,7 +26,7 @@ export class AuthService {
     console.log('authenticate func');
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post( this.port + '/users/authenticate', user, {headers})
+    return this.http.post('/users/authenticate', user, {headers})
       .map(res => res.json());
       //returns json with success and token and also user info
   } 
@@ -43,7 +43,7 @@ export class AuthService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get( this.port + '/users/profile', {headers}).map(res => res.json());
+    return this.http.get('/users/profile', {headers}).map(res => res.json());
   }
 
   loadToken() {
@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   loggedIn() {
-    return tokenNotExpired();
+    return tokenNotExpired('id_token');
   }
 
   logout() {

@@ -17,18 +17,18 @@ export class ExpenseService {
     console.log('addExpense func');
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post( this.port + '/expenses/newExpense', expense, {headers})
+    return this.http.post('/expenses/newExpense', expense, {headers})
       .map(res => res.json());
   }
 
 
   getAllExpenses(username){
-    return this.http.get(this.port + '/expenses/' + username)
+    return this.http.get('/expenses/' + username)
             .map(res => res.json());
   }
 
   deleteExpenseService(id) {
-    return this.http.delete(this.port + '/expenses/' + id)
+    return this.http.delete('/expenses/' + id)
             .map(res => res.json());
   }
 
@@ -36,7 +36,7 @@ export class ExpenseService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     console.log("From edit function:"+expense);
-    return this.http.put(this.port + '/expenses/' + expense._id, expense, {headers})
+    return this.http.put('/expenses/' + expense._id, expense, {headers})
             .map(res => res.json());
   }
 }

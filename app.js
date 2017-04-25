@@ -44,6 +44,9 @@ app.use(passport.session());
 
 require('./passport')(passport);
 
+//Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Index Route
 app.get('/', (req, res) => {
     res.send("home page")
